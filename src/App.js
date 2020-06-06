@@ -8,7 +8,7 @@ function formatAmount(number) {
 }
 
 function App() {
-  const [income, setIncome] = useState(3000000);
+  const [income, setIncome] = useState(1400000);
   const anualIncome = 12 * income;
   const expenses = calculateExpenses(anualIncome);
   const taxableIncome = anualIncome - expenses;
@@ -16,10 +16,6 @@ function App() {
   const retention = calculateRetention(anualIncome);
   const taxes = calculateTaxes(taxableIncome);
   const debt = calculateDebt(mandatoryExpense, taxes, retention);
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-  };
 
   const onChange = (event) => {
     const value = parseInt(event.target.value, 10);
@@ -34,22 +30,15 @@ function App() {
           {' '}
           <span role="img" aria-label="Bandera Chilena">🇨🇱</span>
         </h1>
-        <form onSubmit={onSubmit}>
-          <fieldset>
-            <label htmlFor="income">¿Cuál es tu sueldo bruto?</label>
-            <input
-              id="income"
-              type="number"
-              value={income}
-              onChange={onChange}
-            />
-          </fieldset>
-          <fieldset>
-            <button type="submit">
-              Calcular cuanto tienes que pagar
-            </button>
-          </fieldset>
-        </form>
+        <fieldset>
+          <label htmlFor="income">¿Cuál es tu sueldo bruto (Mensual)?</label>
+          <input
+            id="income"
+            type="number"
+            value={income}
+            onChange={onChange}
+          />
+        </fieldset>
         <table>
           <tbody>
             <tr>
