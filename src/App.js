@@ -1,25 +1,93 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { calculateExpenses, mandatoryExpenses, calculateRetention, calculateTaxes, calculateDebt } from './calculator';
+
+const CLPFormat = new Intl.NumberFormat('es', { style: 'currency', currency: 'CLP' });
+
+function formatAmount(number) {
+  return CLPFormat.format(number);
+}
 
 function App() {
+  const [income, setIncome] = useState(3000000);
+  const anualIncome = 12 * income;
+  const expenses = calculateExpenses(anualIncome);
+  const taxableIncome = anualIncome - expenses;
+  const mandatoryExpense = mandatoryExpenses(taxableIncome);
+  const retention = calculateRetention(anualIncome);
+  const taxes = calculateTaxes(taxableIncome);
+  const debt = calculateDebt(mandatoryExpense, taxes, retention);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const onChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setIncome(isNaN(value) ? 0 : value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section>
+      <article>
+        <h1>
+          Calculadora de impuestos para trabajadores independientes
+          {' '}
+          <span role="img" aria-label="Bandera Chilena">🇨🇱</span>
+        </h1>
+        <form onSubmit={onSubmit}>
+          <fieldset>
+            <label htmlFor="income">¿Cuál es tu sueldo bruto?</label>
+            <input
+              id="income"
+              type="number"
+              value={income}
+              onChange={onChange}
+            />
+          </fieldset>
+          <fieldset>
+            <button type="submit">
+              Calcular cuanto tienes que pagar
+            </button>
+          </fieldset>
+        </form>
+        <table>
+          <tbody>
+            <tr>
+              <th>Ingreso Bruto Anual</th>
+              <td>{formatAmount(anualIncome)}</td>
+            </tr>
+            <tr>
+              <th>Gastos Supuestos</th>
+              <td>{formatAmount(expenses)}</td>
+            </tr>
+            <tr>
+              <th>Ingreso Imponible</th>
+              <td>{formatAmount(taxableIncome)}</td>
+            </tr>
+            <tr>
+              <th>Retención de boletas</th>
+              <td>{formatAmount(retention)}</td>
+            </tr>
+            <tr>
+              <th>Cotización Obligatoria (AFP, Salud, seguros, etc)</th>
+              <td>{formatAmount(mandatoryExpense)}</td>
+            </tr>
+            <tr>
+              <th>Impuesto a la renta</th>
+              <td>{formatAmount(taxes)}</td>
+            </tr>
+            <tr>
+              <th>DEUDA</th>
+              <td>
+                <code className={debt > 0 && 'debt'}>
+                  {formatAmount(debt)}
+                </code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
   );
 }
 
