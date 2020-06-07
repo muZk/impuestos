@@ -50,7 +50,7 @@ function App() {
               <td>{formatAmount(expenses)}</td>
             </tr>
             <tr>
-              <th>Ingreso Imponible</th>
+              <th>Renta Imponible (para cálculo de impuestos)</th>
               <td>{formatAmount(taxableIncome)}</td>
             </tr>
             <tr>
@@ -58,7 +58,7 @@ function App() {
               <td>{formatAmount(retention)}</td>
             </tr>
             <tr>
-              <th>Cotización Obligatoria (AFP, Salud, seguros, etc)</th>
+              <th>Cotización Obligatoria (AFP, Salud, etc)</th>
               <td>{formatAmount(mandatoryExpense)}</td>
             </tr>
             <tr>

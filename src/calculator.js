@@ -1,9 +1,16 @@
-const UTA = 604464; // 12 UTM
+const UTA = 595476; // UTA december 2019
+const UF = 28309.94; // UF 31 december 2019
 const MAX_EXPENSE = 15 * UTA;
+const RETENTION_FACTOR = 10.75;
+const MANDATORY_MAX_EXPENSE = 12 * 80.2 * UF; // anual
+
+function min(a, b) {
+  return a > b ? b : a;
+}
 
 export function calculateExpenses(anualIncome) {
   const expenses = anualIncome * 0.3;
-  return expenses > MAX_EXPENSE ? MAX_EXPENSE : expenses;
+  return min(expenses, MAX_EXPENSE);
 }
 
 const DISABILITY_AND_SURVIVAL_INSURANCE = 1.53;
@@ -12,7 +19,7 @@ const ACCOMPANIMENT_INSURANCE = 0.02;
 const HEALTHCARE = 7;
 const RETIREMENT = 10.77; // is not really constant
 
-export function mandatoryExpenses(taxableIncome) {
+export function mandatoryExpenses(income) {
   const allFactors = [
     DISABILITY_AND_SURVIVAL_INSURANCE,
     ACCIDENTS_INSURANCE,
@@ -22,11 +29,9 @@ export function mandatoryExpenses(taxableIncome) {
   ];
 
   const factorSum = allFactors.reduce((currentSum, factor) => currentSum + factor, 0);
-
+  const taxableIncome = min(0.8 * income, MANDATORY_MAX_EXPENSE);
   return factorSum * taxableIncome / 100;
 }
-
-const RETENTION_FACTOR = 10.75;
 
 export function calculateRetention(anualIncome) {
   return anualIncome * RETENTION_FACTOR / 100;
@@ -37,14 +42,14 @@ function buildStep(factor, maxAmount, discount) {
 }
 
 const STEPS = [
-  buildStep(0,     7833186,          0),
-  buildStep(0.04,  17407080,         313327.44),
-  buildStep(0.08,  29011800,         1009610.64),
-  buildStep(0.135, 40616520,         2605259.64),
-  buildStep(0.23,  52221240,         6463829.04),
-  buildStep(0.304, 69628320,         10328200.8),
-  buildStep(0.35,  87035400,         13531103.52),
-  buildStep(0.4,   Number.MAX_VALUE, 17882873.52),
+  buildStep(0,     13.5 * UTA,          0),
+  buildStep(0.04,  30   * UTA,         0.54  * UTA),
+  buildStep(0.08,  50   * UTA,         1.74  * UTA),
+  buildStep(0.135, 70   * UTA,         4.49  * UTA),
+  buildStep(0.23,  90   * UTA,         11.14 * UTA),
+  buildStep(0.304, 120  * UTA,         17.8  * UTA),
+  buildStep(0.35,  150  * UTA,         23.92 * UTA),
+  buildStep(0.4,   Number.MAX_VALUE,   30.67 * UTA),
 ];
 
 function getTaxStep(taxableIncome) {
@@ -57,5 +62,5 @@ export function calculateTaxes(taxableIncome) {
 }
 
 export function calculateDebt(mandatoryExpense, taxes, retention) {
-  return (mandatoryExpense + taxes) - retention;
+  return taxes - retention + mandatoryExpense;
 }
