@@ -1,68 +1,88 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Calculadora de impuestos para trabajadores independientes 🇨🇱
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07ee9b81-d3e8-4f42-aa7d-500df46f174d/deploy-status)](https://app.netlify.com/sites/impuestos/deploys)
 
-In the project directory, you can run:
+Calculadora que te permite estimar **cuánto tienes que pagar** en tu próxima declaración de impuestos (CHILE 🇨🇱) como **trabajador independiente**.
 
-### `yarn start`
+Live en: https://impuestos.netlify.app/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Soy trabajador independiente, ¿qué debo pagar?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Todos los meses:**
 
-### `yarn test`
+Emitir boleta de honorarios y pagar la retención. La retención históricamente era de 10% pero a partir de 2020 es 10.75, monto que irá subiendo según la siguiente tabla:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| 2019 | 2020   | 2021  | 2022   | 2023 | 2024   | 2025  | 2026   | 2027 | 2028 |
+|------|--------|-------|--------|------|--------|-------|--------|------|------|
+| 10%  | 10.75% | 11.5% | 12.25% | 13%  | 13.75% | 14.5% | 15.25% | 16%  | 17%  |
 
-### `yarn build`
+Sólo eso estás obligado a pagar mes a mes.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Año a Año:**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Cada año en la operación renta (Abril), debes pagar:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Impuesto por tus ingresos (del año anterior)
+2. Cotizaciones obligatorias (se pagan adelantadas para que mes a mes no tengas que pagarlas)
 
-### `yarn eject`
+El impuesto a pagar depende de tus ingresos (mientras más ganas, mayor % de impuesto tendrás que pagar).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Las cotizaciones obligatorias es un porcentaje de tu "sueldo imponible". El porcentaje a pagar es lo que aparece en la siguiente tabla:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| SEGURO DE INVALIDEZ Y SOBREVIVENCIA                                     | 1.53%              |
+|-------------------------------------------------------------------------|--------------------|
+| SEGURO DE LA LEY DE ACCIDENTES DEL TRABAJO Y ENFERMEDADES PROFESIONALES | 0.91%              |
+| SEGURO DE ACOMPAÑAMIENTO DE NIÑOS Y NIÑAS                               | 0.02%              |
+| SALUD                                                                   | 7%                 |
+| PENSIONES                                                               | 10% + comision AFP |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## ¿Qué pasa con la retención de la boleta?
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+La retención de tu boleta (que será 17% el 2028) se usa para pagar tus impuestos, y lo que sobre, para pagar tus cotizaciones obligatorias.
 
-## Learn More
+Por eso, *es posible que quedes debiendo plata y tengas que pagar la diferencia en la operación renta!*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Supuestos para el cálculo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+La calculadora solo te pide tu ingreso mensual BRUTO (el monto por el cual haces la boleta) para calcular los impuestos.
 
-### Code Splitting
+Esto quiere decir que hace algunos supuestos:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+1. Que estás en el tramo etario que paga impuestos.
+2. Que no tienes otras fuentes de ingreso (inversiones, sociedades, viviendas, etc).
+3. No tienes APV-B.
+4. Optas por covertura TOTAL.
+5. 0.77 es la comisión de tu APF.
+6. Tus gastos se calculan en base a "gastos supuestos" (30% de tu bruto)
 
-### Analyzing the Bundle Size
+Estos supuestos son razonables para dar un estimado de lo que debes pagar al SII en la operación de renta (o de lo que recibirás como devolución).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## ¿Cómo se hace el cálculo?
 
-### Making a Progressive Web App
+El cálculo es: `DEUDA = IMPUESTOS - RETENCION + COTIZACIONES`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Si `DEUDA > 0`, le debes plata al SII. Si `DEUDA < 0`, el SII te debe plata.
 
-### Advanced Configuration
+### Impuestos
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+`IMPUESTOS = FACTOR * IMPONIBLE - REBAJA`
 
-### Deployment
+- `IMPONIBLE = BRUTO - GASTOS`
+  - `BRUTO` es tu bruto anual
+  - `GASTOS` es un 30% de tu ingreso bruto, hasta un máximo de 15UTA.
+- `FACTOR` y `REBAJA` se sacan de esta tabla en base a `IMPONIBLE`.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Nota: las cotizaciones obligatorias se asumen dentro de `GASTOS`, así que no reducen tu imponible para impuestos.
 
-### `yarn build` fails to minify
+### Cotizaciones
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+`COTIZACIONES = (19.46 + COMISION AFP)% de imponible`
+
+El imponible para las cotizaciones es distinto al de impuestos, y es igual al 80% de tu sueldo bruto ([fuente](http://www.sii.cl/ayudas/ayudas_por_servicios/2032-cp-2035.html)) hasta un máximo de 962,4UF anual ([fuente](https://www.spensiones.cl/portal/institucional/594/w3-article-13843.html)).
+
+La calculadora usa comisión 0.77 (AFP Modelo) para hacer el cálculo.
+
+## Extras
+
+- Puedes ver como construí la versión inicial [aquí](https://www.twitch.tv/videos/642524019) (Twitch).
+- Si no entiendes nada de lo que escribí aquí, puedes ver [este video](https://www.circuloverde.cl/capitulo-11-la-obligacion-previsional-de-cotizar-de-los-trabajadores-independientes-ley-n-21-133/) donde lo explican más extendidamente.
