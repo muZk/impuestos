@@ -1,0 +1,47 @@
+html, body {
+  @extend %sans-serif;
+  width: 100%;
+  color: $black;
+}
+
+section {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50 * $em;
+  padding: 2em 0;
+}
+
+blockquote {
+  margin: 0;
+  border-left: (.12 * $em) solid $gray;
+  padding: (.25 * $em) $em (.25 * $em) (.88 * $em);
+}
+
+.dark {
+  background-color: $black;
+  color: $white;
+
+  blockquote {
+    border-color: $white;
+  }
+}
+
+.result {
+  padding-top: 10vw;
+  padding-bottom: 10vw;
+  font-size: 3em;
+  line-height: 64px;
+  text-align: center;
+}
+
+@media (max-width: $mobile-width) {
+  .result {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+
+  section {
+    width: auto;
+    padding: 1em;
+  }
+}
