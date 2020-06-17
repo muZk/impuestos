@@ -1,7 +1,8 @@
 html, body {
   @extend %sans-serif;
   width: 100%;
-  color: $black;
+  color: $white;
+  background-color: $bg;
 }
 
 section {
@@ -13,17 +14,21 @@ section {
 
 blockquote {
   margin: 0;
-  border-left: (.12 * $em) solid $gray;
+  border-left: (.12 * $em) solid $white;
   padding: (.25 * $em) $em (.25 * $em) (.88 * $em);
 }
 
 .dark {
-  background-color: $black;
+  background-color: $dark;
   color: $white;
 
   blockquote {
     border-color: $white;
   }
+}
+
+.light {
+  background-color: $light;
 }
 
 .result {
@@ -36,12 +41,12 @@ blockquote {
 
 @media (max-width: $mobile-width) {
   .result {
-    font-size: 2em;
+    font-size: 2rem;
     line-height: 1.2;
   }
 
   section {
     width: auto;
-    padding: 1em;
+    padding: 1rem;
   }
 }

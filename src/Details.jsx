@@ -9,6 +9,7 @@ import {
 import { formatAmount } from "./numbers";
 import Amount from "./Amount";
 import Assumptions from "./Assumptions";
+import Emoji from "./Emoji";
 
 export default function Details({ result }) {
   const {
@@ -24,7 +25,9 @@ export default function Details({ result }) {
   return (
     <div className="dark">
       <section>
-        <h2>Detalle del cálculo</h2>
+        <h2>
+          Detalle del cálculo <Emoji value="✍️" />
+        </h2>
         <p>
           Tu <strong>ingreso bruto anual</strong> es {formatAmount(anualIncome)}
         </p>
@@ -65,7 +68,6 @@ export default function Details({ result }) {
           en que te encuentres según la siguiente tabla:
         </p>
         <table>
-          <caption>Tabla Global Complementario</caption>
           <thead>
             <tr>
               <th>Desde</th>
@@ -87,7 +89,11 @@ export default function Details({ result }) {
                 >
                   <td>{formatAmount(from)}</td>
                   <td>
-                    {index === STEPS.length - 1 ? "🚀" : formatAmount(to)}
+                    {index === STEPS.length - 1 ? (
+                      <Emoji value="🚀" />
+                    ) : (
+                      formatAmount(to)
+                    )}
                   </td>
                   <td>{step.factor}</td>
                   <td>{formatAmount(step.discount)}</td>
