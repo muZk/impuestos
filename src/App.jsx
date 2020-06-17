@@ -36,6 +36,30 @@ function App() {
         </section>
       </div>
       {showResults && <Result income={income} />}
+      <footer>
+        <section>
+          <p>
+            Made with <Emoji value="❤️" /> by{" "}
+            <a
+              href="https://gomezespejo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Nicolás Gómez
+            </a>
+          </p>
+          <p>
+            Source Code in{" "}
+            <a
+              href="https://github.com/muZk/impuestos"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>
+          </p>
+        </section>
+      </footer>
     </>
   );
 }
