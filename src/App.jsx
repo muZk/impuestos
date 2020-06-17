@@ -20,15 +20,17 @@ function App() {
             Impuesto
             <Emoji value="💰" />
           </h1>
-          <h4>
+          <h2>
             Calcula cuánto tienes que pagar de impuestos el 2021{" "}
             <Emoji value="🇨🇱" />
-          </h4>
+          </h2>
           <p>
-            Solo ingresa tu <strong>sueldo bruto mensual</strong>
+            <label htmlFor="income">
+              Solo ingresa tu <strong>sueldo bruto mensual</strong>
+            </label>
           </p>
           <div className="inputs">
-            <input type="number" value={income} onChange={onChange} />
+            <input id="income" type="number" value={income} onChange={onChange} />
             <button onClick={() => setShowResults(true)} type="submit">
               <Emoji value="✨" /> Calcular
             </button>
