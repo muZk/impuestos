@@ -39,6 +39,23 @@ blockquote {
   text-align: center;
 }
 
+.loading {
+  text-align: center;
+  font-size: 2rem;
+  img {
+    animation: rotation 2s infinite linear;
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 @media (max-width: $mobile-width) {
   .result {
     font-size: 2rem;

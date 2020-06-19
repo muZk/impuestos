@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import Result from "./Result";
+import React, { useState, Suspense } from "react";
 import Emoji from "./Emoji";
+
+const Result = React.lazy(() => import("./Result"));
 
 function App() {
   const [income, setIncome] = useState(1400000);
@@ -30,14 +31,29 @@ function App() {
             </label>
           </p>
           <div className="inputs">
-            <input id="income" type="number" value={income} onChange={onChange} />
+            <input
+              id="income"
+              type="number"
+              value={income}
+              onChange={onChange}
+            />
             <button onClick={() => setShowResults(true)} type="submit">
               <Emoji value="✨" /> Calcular
             </button>
           </div>
         </section>
       </div>
-      {showResults && <Result income={income} />}
+      {showResults && (
+        <Suspense
+          fallback={
+            <section className="loading">
+              <Emoji value="⌛" />
+            </section>
+          }
+        >
+          <Result income={income} />
+        </Suspense>
+      )}
       <footer>
         <section>
           <p>
