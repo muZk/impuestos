@@ -1,4 +1,4 @@
-# Calculadora de impuestos para trabajadores independientes 🇨🇱
+# Impuesto💰: calcula cuanto tienes que pagarle al SII como trabajador independiente
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/07ee9b81-d3e8-4f42-aa7d-500df46f174d/deploy-status)](https://app.netlify.com/sites/impuestos/deploys)
 
@@ -86,3 +86,7 @@ La calculadora usa comisión 0.77 (AFP Modelo) para hacer el cálculo.
 
 - Puedes ver como construí la versión inicial [aquí](https://www.twitch.tv/videos/642524019) (Twitch).
 - Si no entiendes nada de lo que escribí aquí, puedes ver [este video](https://www.circuloverde.cl/capitulo-11-la-obligacion-previsional-de-cotizar-de-los-trabajadores-independientes-ley-n-21-133/) donde lo explican más extendidamente.
+
+## Preview
+
+![preview.png](preview.png)
