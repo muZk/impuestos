@@ -35,7 +35,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "react-app-rewire-compression-plugin": "^1.0.0"
-  }
+  "devDependencies": {}
 }
