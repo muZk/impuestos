@@ -1,5 +1,6 @@
 import React, { useState, Suspense } from "react";
 import Emoji from "./Emoji";
+import Loading from "./Loading";
 
 const Result = React.lazy(() => import("./Result"));
 
@@ -44,13 +45,7 @@ function App() {
         </section>
       </div>
       {showResults && (
-        <Suspense
-          fallback={
-            <section className="loading">
-              <Emoji value="⌛" />
-            </section>
-          }
-        >
+        <Suspense fallback={<Loading />}>
           <Result income={income} />
         </Suspense>
       )}
