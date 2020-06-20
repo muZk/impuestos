@@ -7,11 +7,14 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Simula cuánto tendrás que pagar en la próxima declaración renta"
+      property="og:description"
+      content="Calcula cuánto tendrás que pagar en la próxima declaración renta para así evitar sorpresas"
     />
     <meta property="og:image" content="%PUBLIC_URL%/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="628" />
+    <meta property="og:type" content="website" />
+    <meta name="author" content="Nicolás Gómez" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -33,9 +36,15 @@
     <main id="root">
       <div class="splash">
         <h1>Impuesto<span aria-label="s" role="img">💰</span></h1>
-        <p>Calcula cuánto tienes que pagar de impuestos (Chile <span role="img" aria-label="flag-cl">🇨🇱</span>)</p>
+        <p>
+          Calcula cuánto tienes que pagar de impuestos (Chile
+          <span role="img" aria-label="flag-cl">🇨🇱</span>)
+        </p>
         <p><span class="loading" role="img">⌛</span></p>
-        <noscript>Debes habilitar JavaScript para que funcione esta aplicación</noscript>
+        <noscript
+          >Debes habilitar JavaScript para que funcione esta
+          aplicación</noscript
+        >
       </div>
     </main>
     <!--
