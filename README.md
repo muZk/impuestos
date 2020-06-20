@@ -1,6 +1,7 @@
 # Impuesto💰: calcula cuanto tienes que pagarle al SII como trabajador independiente
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/07ee9b81-d3e8-4f42-aa7d-500df46f174d/deploy-status)](https://app.netlify.com/sites/impuestos/deploys)
+[![Lighthouse](lighthouse.svg)](https://github.com/muZk/impuestos)
 
 Calculadora que te permite estimar **cuánto tienes que pagar** en tu próxima declaración de impuestos (CHILE 🇨🇱) como **trabajador independiente**.
 
@@ -89,4 +90,4 @@ La calculadora usa comisión 0.77 (AFP Modelo) para hacer el cálculo.
 
 ## Preview
 
-![preview.png](preview.png)
+![Vista previea](preview.png)
