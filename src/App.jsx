@@ -10,6 +10,11 @@ function App() {
 
   const onChange = (event) => {
     const parsed = event.target.value;
+    if (parsed === "") {
+      setShowResults(false);
+      setIncome("");
+      return;
+    }
     const value = parseInt(parsed, 10);
     setIncome(isNaN(value) ? income : value);
   };
