@@ -37,7 +37,7 @@ export default function Details({ result }) {
         </p>
         <blockquote>
           Esta retención se usa para pagar impuestos y obligaciones legales
-          tales como APF y salud (fonasa o isapre).
+          tales como AFP y salud (fonasa o isapre).
         </blockquote>
         <p>
           En <i>contra</i> tienes los impuestos (<Amount danger value={taxes} />

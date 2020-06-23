@@ -17,8 +17,8 @@ export default function Assumptions() {
           viviendas, etc).
         </li>
         <li>No tienes APV-B.</li>
-        <li>Optas por covertura TOTAL.</li>
-        <li>0.77 es la comisión de tu APF.</li>
+        <li>Optas por cobertura TOTAL.</li>
+        <li>0.77 es la comisión de tu AFP.</li>
         <li>
           Tus gastos se calculan en base a "gastos supuestos" (30% de tu bruto)
         </li>
