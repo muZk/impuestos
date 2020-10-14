@@ -28,7 +28,7 @@ Cada año en la operación renta (Abril), debes pagar:
 
 El impuesto a pagar depende de tus ingresos (mientras más ganas, mayor % de impuesto tendrás que pagar).
 
-Las cotizaciones obligatorias es un porcentaje de tu "sueldo imponible". El porcentaje a pagar es lo que aparece en la siguiente tabla:
+Las cotizaciones obligatorias es un porcentaje de tu _sueldo imponible_. El porcentaje a pagar es lo que aparece en la siguiente tabla:
 
 | SEGURO DE INVALIDEZ Y SOBREVIVENCIA                                     | 1.53%              |
 |-------------------------------------------------------------------------|--------------------|
@@ -36,6 +36,18 @@ Las cotizaciones obligatorias es un porcentaje de tu "sueldo imponible". El porc
 | SEGURO DE ACOMPAÑAMIENTO DE NIÑOS Y NIÑAS                               | 0.02%              |
 | SALUD                                                                   | 7%                 |
 | PENSIONES                                                               | 10% + comision AFP |
+
+**Total o Parcial:**
+
+El SII da la opción de imponer por el total de tu _sueldo imponible_ o por una fracción de dicho monto. Esto también va aumentando gradualmente hasta el año 2028 según la siguiente tabla:
+
+| 2019 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | 2026 | 2027 | 2028 |
+|------|------|------|------|------|------|------|------|------|------|------|
+|  5%  | 17%  | 27%  |  37% |  47% |  57% |  70% |  80% |  90% | 100% | 100% |
+
+En términos prácticos la opción _Parcial_ significa que tienes que pagar menos, ya que la cotización de salud y pensión (no afecta a los otros items) se calculan sobre una fracción de tu imponible.
+
+Nota: La opción parcial implica que la cobertura de salud es menor. Es decir, licencias médicas serán sobre tu sueldo imponible ajustado.
 
 ## ¿Qué pasa con la retención de la boleta?
 
