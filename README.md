@@ -30,8 +30,9 @@ El impuesto a pagar depende de tus ingresos (mientras más ganas, mayor % de imp
 
 Las cotizaciones obligatorias es un porcentaje de tu _sueldo imponible_. El porcentaje a pagar es lo que aparece en la siguiente tabla:
 
-| SEGURO DE INVALIDEZ Y SOBREVIVENCIA                                     | 1.53%              |
+| Item                                                                    | Porcentaje         |      
 |-------------------------------------------------------------------------|--------------------|
+| SEGURO DE INVALIDEZ Y SOBREVIVENCIA                                     | 1.53%              |
 | SEGURO DE LA LEY DE ACCIDENTES DEL TRABAJO Y ENFERMEDADES PROFESIONALES | 0.91%              |
 | SEGURO DE ACOMPAÑAMIENTO DE NIÑOS Y NIÑAS                               | 0.02%              |
 | SALUD                                                                   | 7%                 |
