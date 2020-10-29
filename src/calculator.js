@@ -4,6 +4,7 @@ const MAX_EXPENSE = 15 * UTA;
 const RETENTION_FACTOR = 10.75;
 export const MANDATORY_MAX_EXPENSE_UF = 12 * 80.2; // 80.2
 export const MANDATORY_MAX_EXPENSE = MANDATORY_MAX_EXPENSE_UF * UF; // anual
+const PARTIAL_FACTOR = 0.27 //year 2020
 
 function min(a, b) {
   return a > b ? b : a;
@@ -15,27 +16,53 @@ export function calculateExpenses(anualIncome) {
 }
 
 export const mandatoryExpenseFactors = [
-  { name: "Seguro de invalidez y sobrevivencia", factor: 1.53 },
+  { 
+    name: "Seguro de invalidez y sobrevivencia", 
+    factor: 1.53,
+    variable: false,
+  },
   {
     name:
       "Seguro de la ley de accidentes del trabajo y enfermedades profesionales",
     factor: 0.91,
+    variable: false,
   },
-  { name: "Seguro de acompañamiento niños y niñas", factor: 0.02 },
-  { name: "Salud", factor: 7 },
-  { name: "AFP", factor: 10 },
-  { name: "Comisión AFP", factor: 0.77 },
+  { 
+    name: "Seguro de acompañamiento niños y niñas", 
+    factor: 0.02,
+    variable: false,
+  },
+  { 
+    name: "Salud", 
+    factor: 7,
+    variable: true,
+  },
+  { 
+    name: "AFP", 
+    factor: 10, 
+    variable: true,
+  },
+  { 
+    name: "Comisión AFP", 
+    factor: 0.77,
+    variable: false
+  },
 ];
 
 export function taxableGross(income) {
   return min(0.8 * income, MANDATORY_MAX_EXPENSE);
 }
 
-export function mandatoryExpenses(income) {
-  const factorSum = mandatoryExpenseFactors
-    .map(({ factor }) => factor)
-    .reduce((currentSum, factor) => currentSum + factor, 0);
-  return (factorSum * taxableGross(income)) / 100;
+export function getMandatoryExpenses(income, partial = false){
+  let mandatoryExpensesTotal = 0;
+  mandatoryExpenseFactors.forEach((expense) => {
+    let expenseValue = (taxableGross(income) * expense.factor) / 100;
+    if(expense.variable && partial){
+      expenseValue = expenseValue * PARTIAL_FACTOR;
+    }
+    mandatoryExpensesTotal += expenseValue;
+  })
+  return mandatoryExpensesTotal
 }
 
 export function calculateRetention(anualIncome) {
@@ -74,10 +101,12 @@ export function calculate(monthlyIncome) {
   const anualIncome = 12 * monthlyIncome;
   const expenses = calculateExpenses(anualIncome);
   const taxableIncome = anualIncome - expenses;
-  const mandatoryExpense = mandatoryExpenses(anualIncome);
+  const mandatoryExpense = getMandatoryExpenses(anualIncome);
+  const partialMandatoryExpense = getMandatoryExpenses(anualIncome, true);
   const retention = calculateRetention(anualIncome);
   const taxes = calculateTaxes(taxableIncome);
   const debt = calculateDebt(mandatoryExpense, taxes, retention);
+  const partialDebt = calculateDebt(partialMandatoryExpense, taxes, retention);
   return {
     anualIncome,
     expenses,
@@ -86,5 +115,6 @@ export function calculate(monthlyIncome) {
     retention,
     taxes,
     debt,
+    partialDebt,
   };
 }
