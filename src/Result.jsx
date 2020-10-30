@@ -1,38 +1,38 @@
 import React from "react";
-import { calculate } from "./calculator";
+import { calcular } from "./calculator";
 import { formatAmount } from "./numbers";
 import Details from "./Details";
 
 export default function Result({ income }) {
-  const result = calculate(income);
-  const { debt, partialDebt } = result;
+  const result = calcular(income);
+  const { deuda, deudaModalidadParcial } = result;
   return (
     <>
       <div className="light">
         <section className="result">
-          {debt > 0 ? (
+          {deuda > 0 ? (
             <>
               Tendrás que <strong>pagar</strong> aproximadamente{" "}
-              <strong>{formatAmount(debt)}</strong>
+              <strong>{formatAmount(deuda)}</strong>
             </>
           ) : (
             <>
               Recibirás una <strong>devolución</strong> de aproximadamente{" "}
-              <strong>{formatAmount(-debt)}</strong>
+              <strong>{formatAmount(-deuda)}</strong>
             </>
           )}
         <hr/>
           <small>Si eliges una cotización parcial,</small>
           <br/>
-          {partialDebt > 0 ? (
+          {deudaModalidadParcial > 0 ? (
             <small>
               tendrás que <strong>pagar</strong> aproximadamente{" "}
-              <strong>{formatAmount(partialDebt)}</strong>
+              <strong>{formatAmount(deudaModalidadParcial)}</strong>
             </small>
           ) : (
             <small>
               recibirás una <strong>devolución</strong> de aproximadamente{" "}
-              <strong>{formatAmount(-partialDebt)}</strong>
+              <strong>{formatAmount(-deudaModalidadParcial)}</strong>
             </small>
           )}
         </section>
