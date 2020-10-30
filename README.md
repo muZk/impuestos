@@ -65,7 +65,7 @@ Esto quiere decir que hace algunos supuestos:
 1. Que estás en el tramo etario que paga impuestos.
 2. Que no tienes otras fuentes de ingreso (inversiones, sociedades, viviendas, etc).
 3. No tienes APV-B.
-4. Optas por covertura TOTAL.
+4. Optas por cobertura TOTAL.
 5. 0.77 es la comisión de tu APF.
 6. Tus gastos se calculan en base a "gastos supuestos" (30% de tu bruto)
 

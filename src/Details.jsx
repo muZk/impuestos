@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  getTaxStep,
-  mandatoryExpenseFactors,
-  MANDATORY_MAX_EXPENSE_UF,
-  taxableGross,
-  STEPS,
+  obtenerTramoImpositivo,
+  cotizacionesObligatorias,
+  TOPE_IMPONIBLE_UF,
+  calcularSueldoImponible,
+  TRAMOS_IMPOSITIVOS,
 } from "./calculator";
 import { formatAmount } from "./numbers";
 import Amount from "./Amount";
@@ -13,15 +13,15 @@ import Emoji from "./Emoji";
 
 export default function Details({ result }) {
   const {
-    anualIncome,
-    expenses,
-    taxableIncome,
-    mandatoryExpense,
-    retention,
-    taxes,
-    debt,
+    sueldoAnual,
+    gastos,
+    sueldoTributable,
+    montoCotizacionesObligatorias,
+    retencion,
+    impuestos,
+    deuda,
   } = result;
-  const activeStep = getTaxStep(taxableIncome);
+  const activeStep = obtenerTramoImpositivo(sueldoTributable);
   return (
     <div className="dark">
       <section>
@@ -29,20 +29,20 @@ export default function Details({ result }) {
           Detalle del cálculo <Emoji value="✍️" />
         </h2>
         <p>
-          Tu <strong>ingreso bruto anual</strong> es {formatAmount(anualIncome)}
+          Tu <strong>ingreso bruto anual</strong> es {formatAmount(sueldoAnual)}
         </p>
         <p>
           A tu favor, tienes la <strong>retención de tus boletas</strong> (el
-          10.75%), lo cual es <Amount success value={retention} />
+          10.75%), lo cual es <Amount success value={retencion} />
         </p>
         <blockquote>
           Esta retención se usa para pagar impuestos y obligaciones legales
           tales como AFP y salud (fonasa o isapre).
         </blockquote>
         <p>
-          En <i>contra</i> tienes los impuestos (<Amount danger value={taxes} />
+          En <i>contra</i> tienes los impuestos (<Amount danger value={impuestos} />
           ) y las obligaciones legales (
-          <Amount danger value={mandatoryExpense} />)
+          <Amount danger value={montoCotizacionesObligatorias} />)
         </p>
         <h3>Cálculo del impuesto</h3>
         <p>
@@ -55,13 +55,13 @@ export default function Details({ result }) {
             <strong>Gastos presuntos</strong>
           </li>
           <li>
-            Gastos presuntos = <Amount value={expenses} /> (30% de tu BRUTO
+            Gastos presuntos = <Amount value={gastos} /> (30% de tu BRUTO
             hasta un máximo de 15UTA)
           </li>
         </ul>
         <p>
           Por lo tanto, tu <strong>Base Tributable</strong> es{" "}
-          <Amount value={taxableIncome} />
+          <Amount value={sueldoTributable} />
         </p>
         <p>
           Con tu base tributable, se calcula el impuesto dependiendo del tramo
@@ -77,26 +77,26 @@ export default function Details({ result }) {
             </tr>
           </thead>
           <tbody>
-            {STEPS.map((step, index) => {
-              const from = index === 0 ? 0 : STEPS[index - 1].maxAmount + 0.01;
-              const to = step.maxAmount;
+            {TRAMOS_IMPOSITIVOS.map((step, index) => {
+              const from = index === 0 ? 0 : TRAMOS_IMPOSITIVOS[index - 1].montoMaximo + 0.01;
+              const to = step.montoMaximo;
               return (
                 <tr
                   className={
-                    taxableIncome > from && taxableIncome < to ? "active" : ""
+                    sueldoTributable > from && sueldoTributable < to ? "active" : ""
                   }
                   key={`step-${index}`}
                 >
                   <td>{formatAmount(from)}</td>
                   <td>
-                    {index === STEPS.length - 1 ? (
+                    {index === TRAMOS_IMPOSITIVOS.length - 1 ? (
                       <Emoji value="🚀" />
                     ) : (
                       formatAmount(to)
                     )}
                   </td>
                   <td>{step.factor}</td>
-                  <td>{formatAmount(step.discount)}</td>
+                  <td>{formatAmount(step.descuento)}</td>
                 </tr>
               );
             })}
@@ -104,22 +104,22 @@ export default function Details({ result }) {
         </table>
         Así que: impuesto ={" "}
         <code>
-          {activeStep.factor} x {formatAmount(taxableIncome)} -{" "}
-          {formatAmount(activeStep.discount)} = {formatAmount(taxes)}
+          {activeStep.factor} x {formatAmount(sueldoTributable)} -{" "}
+          {formatAmount(activeStep.descuento)} = {formatAmount(impuestos)}
         </code>
         <h3>Descuentos Legales</h3>
         <p>
           Los descuentos legales se calculan sobre tu{" "}
           <strong>Bruto Imponible</strong> el cual es igual al 80% de tu bruto,
-          hasta un máximo de {MANDATORY_MAX_EXPENSE_UF.toFixed(2)} (UF).
+          hasta un máximo de {TOPE_IMPONIBLE_UF.toFixed(2)} (UF).
         </p>
         <p>
           Por lo tanto, <strong>Bruto Imponible</strong> ={" "}
-          <Amount value={taxableGross(anualIncome)} />
+          <Amount value={calcularSueldoImponible(sueldoAnual)} />
         </p>
         <p>
           Tu monto total de descuento legal es{" "}
-          <Amount value={mandatoryExpense} />. A continuación el detalle:
+          <Amount value={montoCotizacionesObligatorias} />. A continuación el detalle:
         </p>
         <table>
           <thead>
@@ -130,12 +130,12 @@ export default function Details({ result }) {
             </tr>
           </thead>
           <tbody>
-            {mandatoryExpenseFactors.map(({ name, factor }) => (
+            {cotizacionesObligatorias.map(({ name, percent }) => (
               <tr key={name}>
                 <td>{name}</td>
-                <td>{factor}%</td>
+                <td>{percent}%</td>
                 <td>
-                  {formatAmount((taxableGross(anualIncome) * factor) / 100)}
+                  {formatAmount((calcularSueldoImponible(sueldoAnual) * percent) / 100)}
                 </td>
               </tr>
             ))}
@@ -146,28 +146,28 @@ export default function Details({ result }) {
         <ul>
           <li>
             A favor, tienes tus retenciones que son{" "}
-            <Amount success value={retention} />
+            <Amount success value={retencion} />
           </li>
           <li>
-            Tienes que pagar impuestos: <Amount danger value={taxes} />
+            Tienes que pagar impuestos: <Amount danger value={impuestos} />
           </li>
           <li>
             Tienes que pagar obligaciones legales:{" "}
-            <Amount danger value={mandatoryExpense} />
+            <Amount danger value={montoCotizacionesObligatorias} />
           </li>
         </ul>
         <p>
           Deuda ={" "}
           <code>
-            {formatAmount(retention)} - {formatAmount(taxes)} -{" "}
-            {formatAmount(mandatoryExpense)} = {formatAmount(debt)}
+            {formatAmount(retencion)} - {formatAmount(impuestos)} -{" "}
+            {formatAmount(montoCotizacionesObligatorias)} = {formatAmount(deuda)}
           </code>
         </p>
         <p>
-          {debt > 0
-            ? `Como este resultado es > 0, debes ${formatAmount(debt)}`
+          {deuda > 0
+            ? `Como este resultado es > 0, debes ${formatAmount(deuda)}`
             : `Como este resultado es < 0, tendrás una devolución de ${formatAmount(
-                debt
+                deuda
               )}`}
         </p>
         <Assumptions />
