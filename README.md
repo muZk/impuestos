@@ -42,7 +42,7 @@ Las cotizaciones obligatorias es un porcentaje de tu _sueldo imponible_. El porc
 
 El SII da la opción de imponer por el total de tu _sueldo imponible_ o por una fracción de dicho monto. Esto también va aumentando gradualmente hasta el año 2028 según la siguiente tabla:
 
-| 2019 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | 2026 | 2027 | 2028 |
+| 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | 2026 | 2027 | 2028 |
 |------|------|------|------|------|------|------|------|------|------|------|
 |  5%  | 17%  | 27%  |  37% |  47% |  57% |  70% |  80% |  90% | 100% | 100% |
 
