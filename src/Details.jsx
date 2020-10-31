@@ -5,7 +5,7 @@ import {
   TOPE_IMPONIBLE_UF,
   calcularSueldoImponible,
   TRAMOS_IMPOSITIVOS,
-} from "./calculator";
+} from "tax-cl";
 import { formatAmount } from "./numbers";
 import Amount from "./Amount";
 import Assumptions from "./Assumptions";
