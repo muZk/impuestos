@@ -1,5 +1,5 @@
 import React from "react";
-import { UF } from "./calculator";
+import { UF } from "tax-cl";
 import Amount from "./Amount";
 
 export default function Assumptions() {

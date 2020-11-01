@@ -1,5 +1,5 @@
 import React from "react";
-import { calcular } from "./calculator";
+import { calcular } from "tax-cl";
 import { formatAmount } from "./numbers";
 import Details from "./Details";
 
