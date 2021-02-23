@@ -1,6 +1,9 @@
 import React from "react";
-import { UF } from "tax-cl";
+import { obtenerConfiguracion, COTIZACIONES_OBLIGATORIAS } from "tax-cl";
 import Amount from "./Amount";
+
+const { UF, OPERACION_RENTA } = obtenerConfiguracion();
+const { percent: COMISION_AFP } = COTIZACIONES_OBLIGATORIAS.find(({ name }) => name === "Comisión AFP");
 
 export default function Assumptions() {
   return (
@@ -8,7 +11,10 @@ export default function Assumptions() {
       <h2>Supuestos para el cálculo:</h2>
       <ul>
         <li>
-          Valor UF: <Amount value={UF} /> (31 diciembre 2019)
+          Los cálculos considera valores para la <strong>Operación Renta {OPERACION_RENTA}</strong>
+        </li>
+        <li>
+          Valor UF: <Amount value={UF} /> (31 diciembre {OPERACION_RENTA - 1})
         </li>
         <li>Eres trabajador independiente</li>
         <li>Estás en el tramo etario que paga retenciones.</li>
@@ -17,8 +23,7 @@ export default function Assumptions() {
           viviendas, etc).
         </li>
         <li>No tienes APV-B.</li>
-        <li>Optas por cobertura TOTAL.</li>
-        <li>0.77 es la comisión de tu AFP.</li>
+        <li>{COMISION_AFP} es la comisión de tu AFP.</li>
         <li>
           Tus gastos se calculan en base a "gastos supuestos" (30% de tu bruto)
         </li>

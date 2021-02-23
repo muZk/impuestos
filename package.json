@@ -12,7 +12,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-twemoji": "^0.2.3",
-    "tax-cl": "^0.0.1"
+    "tax-cl": "^1.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",

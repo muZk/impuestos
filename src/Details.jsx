@@ -1,15 +1,22 @@
 import React from "react";
 import {
-  obtenerTramoImpositivo,
-  cotizacionesObligatorias,
-  TOPE_IMPONIBLE_UF,
+  buscarTramoImpositivo,
   calcularSueldoImponible,
-  TRAMOS_IMPOSITIVOS,
+  obtenerConfiguracion,
+  COTIZACIONES_OBLIGATORIAS,
 } from "tax-cl";
 import { formatAmount } from "./numbers";
 import Amount from "./Amount";
 import Assumptions from "./Assumptions";
 import Emoji from "./Emoji";
+
+const {
+  TRAMOS_IMPOSITIVOS,
+  TOPE_IMPONIBLE_MENSUAL,
+  UF,
+} = obtenerConfiguracion();
+
+const TOPE_IMPONIBLE_ANUAL_EN_UF = TOPE_IMPONIBLE_MENSUAL * UF * 12;
 
 export default function Details({ result }) {
   const {
@@ -21,7 +28,7 @@ export default function Details({ result }) {
     impuestos,
     deuda,
   } = result;
-  const activeStep = obtenerTramoImpositivo(sueldoTributable);
+  const activeStep = buscarTramoImpositivo(sueldoTributable);
   return (
     <div className="dark">
       <section>
@@ -111,7 +118,7 @@ export default function Details({ result }) {
         <p>
           Los descuentos legales se calculan sobre tu{" "}
           <strong>Bruto Imponible</strong> el cual es igual al 80% de tu bruto,
-          hasta un máximo de {TOPE_IMPONIBLE_UF.toFixed(2)} (UF).
+          hasta un máximo de {TOPE_IMPONIBLE_ANUAL_EN_UF.toFixed(2)} (UF).
         </p>
         <p>
           Por lo tanto, <strong>Bruto Imponible</strong> ={" "}
@@ -130,7 +137,7 @@ export default function Details({ result }) {
             </tr>
           </thead>
           <tbody>
-            {cotizacionesObligatorias.map(({ name, percent }) => (
+            {COTIZACIONES_OBLIGATORIAS.map(({ name, percent }) => (
               <tr key={name}>
                 <td>{name}</td>
                 <td>{percent}%</td>
