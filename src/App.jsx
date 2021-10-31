@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import Emoji from "./Emoji";
 import Loading from "./Loading";
 
@@ -7,6 +7,15 @@ const Result = React.lazy(() => import("./Result"));
 function App() {
   const [income, setIncome] = useState(1400000);
   const [showResults, setShowResults] = useState(false);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const incomeParam = parseInt(queryParams.get("income"));
+    if (incomeParam) {
+      setIncome(incomeParam);
+      setShowResults(true);
+    }
+  }, []);
 
   const onChange = (event) => {
     const parsed = event.target.value;
