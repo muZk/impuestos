@@ -13,6 +13,7 @@ import Emoji from "./Emoji";
 const {
   TRAMOS_IMPOSITIVOS,
   TOPE_IMPONIBLE_MENSUAL,
+  RETENCION,
 } = obtenerConfiguracion();
 
 const TOPE_IMPONIBLE_ANUAL_EN_UF = TOPE_IMPONIBLE_MENSUAL * 12;
