@@ -38,8 +38,7 @@ export default function Details({ result }) {
           Tu <strong>ingreso bruto anual</strong> es {formatAmount(sueldoAnual)}
         </p>
         <p>
-          A tu favor, tienes la <strong>retención de tus boletas</strong> (el
-          10.75%), lo cual es <Amount success value={retencion} />
+          A tu favor, tienes la <strong>retención de tus boletas</strong> (el {100 * RETENCION}%), lo cual es <Amount success value={retencion} />
         </p>
         <blockquote>
           Esta retención se usa para pagar impuestos y obligaciones legales
