@@ -1,8 +1,10 @@
 import React, { useState, Suspense, useEffect } from "react";
+import { configurarDeclaracion } from "tax-cl";
 import Emoji from "./Emoji";
 import Loading from "./Loading";
 
 const Result = React.lazy(() => import("./Result"));
+configurarDeclaracion(new Date().getFullYear());
 
 function App() {
   const [income, setIncome] = useState(1400000);
@@ -37,7 +39,7 @@ function App() {
             <Emoji value="💰" />
           </h1>
           <h2>
-            Calcula cuánto tienes que pagar de impuestos el 2021{" "}
+            Calcula cuánto tienes que pagar de impuestos el {new Date().getFullYear()}{" "}
             <Emoji value="🇨🇱" />
           </h2>
           <p>
