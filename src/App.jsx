@@ -68,14 +68,16 @@ function App() {
       <footer>
         <section>
           <p>
-            Made with <Emoji value="❤️" /> by{" "}
+            Un proyecto de{" "}
             <a
-              href="https://gomezespejo.com"
+              href="https://trabajoremoto.cl/?utm_campaign=blog-launch&utm_source=impuestos&utm_medium=tools"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Nicolás Gómez
+              TrabajoRemoto.cl
             </a>
+            {" "}
+            <Emoji value="❤️" />
           </p>
           <p>
             Source Code in{" "}
