@@ -8983,10 +8983,10 @@ tar@^2.0.0:
     fstream "^1.0.12"
     inherits "2"
 
-tax-cl@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tax-cl/-/tax-cl-1.0.3.tgz#c814682064341b8a5b86964889cc5796208d38a9"
-  integrity sha512-f1GFq+OCI2G2DlKmSZSNUVgjgufzwX6e2qFrVOz+KVh9NjdbU7zxFzH1J/TRkhEKeF8HMHB4PYXW0G9JgtT/hA==
+tax-cl@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tax-cl/-/tax-cl-1.0.5.tgz#fb6d732bcbf662a4917087a5bdb66f1b8285544e"
+  integrity sha512-FwNpwGXsMUbLiCZDhJd6JVbpJZvwaj41VaQhjXk/TJ0m6b6S6aALTPZtELznsNqbetKGJBragIef8WgEZMZjfw==
 
 terser-webpack-plugin@2.3.5:
   version "2.3.5"
