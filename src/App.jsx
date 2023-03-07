@@ -2,6 +2,7 @@ import React, { useState, Suspense, useEffect } from "react";
 import { configurarDeclaracion } from "tax-cl";
 import Emoji from "./Emoji";
 import Loading from "./Loading";
+import HeaderBar from "./HeaderBar";
 
 const Result = React.lazy(() => import("./Result"));
 configurarDeclaracion(new Date().getFullYear());
@@ -33,6 +34,7 @@ function App() {
   return (
     <>
       <div>
+        <HeaderBar />
         <section className="hero">
           <h1>
             Impuesto
