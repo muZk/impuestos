@@ -3,7 +3,6 @@ import {
   buscarTramoImpositivo,
   calcularSueldoImponible,
   obtenerConfiguracion,
-  COTIZACIONES_OBLIGATORIAS,
 } from "tax-cl";
 import { formatAmount } from "./numbers";
 import Amount from "./Amount";
@@ -27,6 +26,7 @@ export default function Details({ result }) {
     retencion,
     impuestos,
     deuda,
+    cotizaciones,
   } = result;
   const activeStep = buscarTramoImpositivo(sueldoTributable);
   return (
@@ -136,10 +136,10 @@ export default function Details({ result }) {
             </tr>
           </thead>
           <tbody>
-            {COTIZACIONES_OBLIGATORIAS.map(({ name, percent }) => (
+            {cotizaciones.total.map(({ name, percent }) => (
               <tr key={name}>
                 <td>{name}</td>
-                <td>{percent}%</td>
+                <td>{Number(percent.toFixed(2))}%</td>
                 <td>
                   {formatAmount((calcularSueldoImponible(sueldoAnual) * percent) / 100)}
                 </td>
@@ -165,8 +165,8 @@ export default function Details({ result }) {
         <p>
           Deuda ={" "}
           <code>
-            {formatAmount(retencion)} - {formatAmount(impuestos)} -{" "}
-            {formatAmount(montoCotizacionesObligatorias)} = {formatAmount(deuda)}
+            {formatAmount(montoCotizacionesObligatorias)} +{" "}
+            {formatAmount(impuestos)} - {formatAmount(retencion)} = {formatAmount(deuda)}
           </code>
         </p>
         <p>
