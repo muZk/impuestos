@@ -5,20 +5,40 @@ import Loading from "./Loading";
 import HeaderBar from "./HeaderBar";
 
 const Result = React.lazy(() => import("./Result"));
-configurarDeclaracion(new Date().getFullYear());
+configurarDeclaracion(getDefaultYear());
+
+function getDefaultYear() {
+  // Antes de junio, te importa la operación renta actual.
+  // Después de junio, te importa la operación renta del próximo año.
+  if (new Date().getMonth() < 6) {
+    return new Date().getFullYear();
+  }
+
+  return new Date().getFullYear() + 1
+}
 
 function App() {
   const [income, setIncome] = useState(1400000);
   const [showResults, setShowResults] = useState(false);
+  const [year, setYear] = useState(() => getDefaultYear());
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const incomeParam = parseInt(queryParams.get("income"));
+    const year = parseInt(queryParams.get("year"));
     if (incomeParam) {
       setIncome(incomeParam);
       setShowResults(true);
     }
+
+    if (year) {
+      setYear(year);
+    }
   }, []);
+
+  useEffect(() => {
+    configurarDeclaracion(year);
+  }, [year]);
 
   const onChange = (event) => {
     const parsed = event.target.value;

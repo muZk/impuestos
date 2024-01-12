@@ -2,10 +2,10 @@ import React from "react";
 import { obtenerConfiguracion, COTIZACIONES_OBLIGATORIAS } from "tax-cl";
 import Amount from "./Amount";
 
-const { UF, OPERACION_RENTA } = obtenerConfiguracion();
-const { percent: AFP } = COTIZACIONES_OBLIGATORIAS.find(({ name }) => name === "AFP");
-
 export default function Assumptions() {
+  const { UF, OPERACION_RENTA } = obtenerConfiguracion();
+  const { percent: AFP } = COTIZACIONES_OBLIGATORIAS.find(({ name }) => name === "AFP");
+
   return (
     <>
       <h2>Supuestos para el cálculo:</h2>
