@@ -11,7 +11,8 @@ export default function Assumptions() {
       <ul>
         <li>
           Los cálculos considera valores para la{" "}
-          <strong>Operación Renta {OPERACION_RENTA}</strong>
+          <strong>Operación Renta {OPERACION_RENTA}</strong> (considera tus
+          ingresos del año {OPERACION_RENTA - 1})
         </li>
         <li>
           Valor UF: <Amount value={UF} /> (31 diciembre {OPERACION_RENTA - 1})
