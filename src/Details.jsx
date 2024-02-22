@@ -163,7 +163,7 @@ export default function Details({ result }) {
           </tbody>
         </table>
         <blockquote>
-          Nota: El monto de la AFP se calcula en base a <strong>lo que queda después de la retención</strong> asociada a tu Bruto Imponible. Así que por ahora no es un porcentaje fijo.
+          Nota: La AFP se paga con el remanente de tu retención. Es por eso que el porcentaje de cotización es menor al 10%.
         </blockquote>
         <h3>Cálculo Final</h3>
         Resumiendo tu situación:
