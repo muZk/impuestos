@@ -41,13 +41,13 @@ export default function Details({ result }) {
           {100 * RETENCION}%), lo cual es <Amount success value={retencion} />
         </p>
         <blockquote>
-          Esta retención se usa para pagar impuestos y obligaciones legales
-          tales como AFP y salud (fonasa o isapre).
+          Esta retención se usa para pagar impuestos y cotizaciones tales como
+          AFP y salud (fonasa o isapre).
         </blockquote>
         <p>
           En <i>contra</i> tienes los impuestos (
           <Amount danger value={impuestos} />
-          ) y las obligaciones legales (
+          ) y las cotizaciones (
           <Amount danger value={montoCotizacionesObligatorias} />)
         </p>
         <h3>Cálculo del impuesto</h3>
@@ -163,7 +163,8 @@ export default function Details({ result }) {
           </tbody>
         </table>
         <blockquote>
-          Nota: La AFP se paga con el remanente de tu retención. Es por eso que el porcentaje de cotización es menor al 10%.
+          Nota: La AFP se paga con el remanente de tu retención. Es por eso que
+          el porcentaje de cotización es menor al 10%.
         </blockquote>
         <h3>Cálculo Final</h3>
         Resumiendo tu situación:
@@ -176,7 +177,7 @@ export default function Details({ result }) {
             Tienes que pagar impuestos: <Amount danger value={impuestos} />
           </li>
           <li>
-            Tienes que pagar obligaciones legales:{" "}
+            Tienes que pagar cotizaciones:{" "}
             <Amount danger value={montoCotizacionesObligatorias} />
           </li>
         </ul>
