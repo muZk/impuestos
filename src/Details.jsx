@@ -127,7 +127,7 @@ export default function Details({ result }) {
           ).
         </p>
         <p>
-          {imponibleCotizaciones > maximoImponible
+          {imponibleCotizaciones >= maximoImponible
             ? "Como tu bruto imponible es mayor al tope, se considera el tope como base para el cálculo de las cotizaciones."
             : "Como tu bruto imponible es menor al tope, se considera tu bruto imponible como base para el cálculo de las cotizaciones."}
         </p>
