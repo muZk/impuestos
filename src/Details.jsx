@@ -38,7 +38,7 @@ export default function Details({ result }) {
         </p>
         <p>
           A tu favor, tienes la <strong>retención de tus boletas</strong> (el{" "}
-          {100 * RETENCION}%), lo cual es <Amount success value={retencion} />
+          {Math.floor(10000 * RETENCION) / 100}%), lo cual es <Amount success value={retencion} />
         </p>
         <blockquote>
           Esta retención se usa para pagar impuestos y cotizaciones tales como
