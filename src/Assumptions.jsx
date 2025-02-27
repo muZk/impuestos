@@ -15,7 +15,7 @@ export default function Assumptions() {
           ingresos del año {OPERACION_RENTA - 1})
         </li>
         <li>
-          Valor UF: <Amount value={UF} /> (31 diciembre {OPERACION_RENTA - 1})
+          Valor UF: <Amount value={UF} />.
         </li>
         <li>Eres trabajador independiente</li>
         <li>

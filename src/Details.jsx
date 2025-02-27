@@ -10,7 +10,7 @@ import Assumptions from "./Assumptions";
 import Emoji from "./Emoji";
 
 export default function Details({ result }) {
-  const { TRAMOS_IMPOSITIVOS, TOPE_IMPONIBLE_MENSUAL, RETENCION, UF } =
+  const { TRAMOS_IMPOSITIVOS, TOPE_IMPONIBLE_MENSUAL, RETENCION, UF, OPERACION_RENTA } =
     obtenerConfiguracion();
 
   const TOPE_IMPONIBLE_ANUAL_EN_UF = TOPE_IMPONIBLE_MENSUAL * 12;
@@ -38,7 +38,7 @@ export default function Details({ result }) {
         </p>
         <p>
           A tu favor, tienes la <strong>retención de tus boletas</strong> (el{" "}
-          {Math.floor(10000 * RETENCION) / 100}%), lo cual es <Amount success value={retencion} />
+          {Math.floor(10000 * RETENCION) / 100}%, retención para el año {OPERACION_RENTA - 1}), lo cual es <Amount success value={retencion} />
         </p>
         <blockquote>
           Esta retención se usa para pagar impuestos y cotizaciones tales como

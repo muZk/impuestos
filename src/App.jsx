@@ -8,12 +8,7 @@ const Result = React.lazy(() => import("./Result"));
 configurarDeclaracion(getDefaultYear());
 
 function getDefaultYear() {
-  // Antes de junio, te importa la operación renta actual.
-  // Después de junio, te importa la operación renta del próximo año.
-  if (new Date().getMonth() < 6) {
-    return new Date().getFullYear();
-  }
-
+  // Siempre nos importa la declaración renta del próximo año
   return new Date().getFullYear() + 1
 }
 
@@ -61,7 +56,7 @@ function App() {
             <Emoji value="💰" />
           </h1>
           <h2>
-            Calcula cuánto tienes que pagar de impuestos el {new Date().getFullYear()}{" "}
+            Calcula cuánto tienes que pagar de impuestos el {year}{" "}
             <Emoji value="🇨🇱" />
           </h2>
           <p>
