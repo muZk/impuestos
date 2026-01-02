@@ -1,0 +1,160 @@
+@use 'sass:color';
+@use 'variables' as *;
+
+.result-section {
+  background: linear-gradient(135deg, $light 0%, color.adjust($light, $lightness: -5%) 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Subtle background pattern
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba($accent, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 50%, rgba($accent, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.result {
+  padding: 4rem 1rem;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  // Reset the old styles
+  font-size: 1rem;
+  line-height: 1.5;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    background: rgba($bg, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($white, 0.1);
+    animation: slideUp 0.5s ease-out both;
+
+    &--secondary {
+      padding: 1.25rem 2rem;
+      background: rgba($bg, 0.25);
+      animation-delay: 0.2s;
+
+      .result__label {
+        font-size: 0.9rem;
+      }
+
+      .result__amount {
+        font-size: 1.75rem;
+      }
+    }
+
+    &--pay {
+      .result__amount {
+        color: $red;
+        text-shadow: 0 0 30px rgba($red, 0.4);
+      }
+    }
+
+    &--refund {
+      .result__amount {
+        color: $green;
+        text-shadow: 0 0 30px rgba($green, 0.4);
+      }
+    }
+  }
+
+  &__label {
+    font-size: 1.1rem;
+    color: rgba($white, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  &__amount {
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    transition: color 0.3s ease;
+  }
+
+  &__approx {
+    font-size: 0.85rem;
+    color: rgba($white, 0.5);
+    margin-top: 0.5rem;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+    color: rgba($white, 0.4);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    animation: fadeIn 0.5s ease-out 0.1s both;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: $mobile-width) {
+  .result {
+    padding: 3rem 1rem;
+
+    &__card {
+      padding: 1.5rem 2rem;
+      width: calc(100% - 2rem);
+
+      &--secondary {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+    &__amount {
+      font-size: 2.5rem;
+    }
+
+    &__card--secondary .result__amount {
+      font-size: 1.5rem;
+    }
+  }
+}

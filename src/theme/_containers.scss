@@ -34,14 +34,6 @@ blockquote {
   background-color: $light;
 }
 
-.result {
-  padding-top: 10vw;
-  padding-bottom: 10vw;
-  font-size: 3em;
-  line-height: 64px;
-  text-align: center;
-}
-
 .loading {
   text-align: center;
   font-size: 2rem;
@@ -61,11 +53,6 @@ blockquote {
 }
 
 @media (max-width: $mobile-width) {
-  .result {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-
   section {
     width: auto;
     padding: 1rem;
