@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .text-danger {
   color: $red;
 }

@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use 'variables' as *;
+
 input, button {
   @extend %sans-serif;
   border-radius: .2 * $em;
@@ -19,7 +22,7 @@ button {
   border: none;
 
   &:hover {
-    background: darken($accent, 15);
-    color: darken($white, 25);
+    background: color.adjust($accent, $lightness: -15%);
+    color: color.adjust($white, $lightness: -25%);
   }
 }

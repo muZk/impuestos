@@ -1,11 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+@use 'sass:color';
+@use 'normalize';
+@use 'variables' as *;
+@use 'headings';
+@use 'containers';
+@use 'forms';
+@use 'table';
+@use 'texts';
+@use 'hero';
+@use 'header-bar';
+@use 'year-selector';
 
-@import 'normalize';
-@import 'variables';
-@import 'headings';
-@import 'containers';
-@import 'forms';
-@import 'table';
-@import 'texts';
-@import 'hero';
-@import 'header-bar';
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/rubik/v28/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4iFWkU1Z4Y.woff2') format('woff2');
+}
