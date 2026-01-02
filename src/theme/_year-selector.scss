@@ -1,0 +1,86 @@
+@use 'variables' as *;
+
+.year-selector {
+  position: relative;
+  display: inline-block;
+
+  &__trigger {
+    background: none;
+    border: none;
+    color: $white;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 0.1em;
+    border-bottom: 2px solid $accent;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba($accent, 0.25);
+    }
+
+    &:focus {
+      outline: none;
+      background-color: rgba($accent, 0.25);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+    list-style: none;
+    background: $dark;
+    border: 1px solid $light;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    min-width: 5rem;
+    max-height: 12rem;
+    overflow-y: auto;
+
+    // Subtle scrollbar
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $light;
+      border-radius: 2px;
+    }
+
+    li {
+      margin: 0;
+    }
+  }
+
+  &__option {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    background: none;
+    border: none;
+    color: $white;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background: $light;
+    }
+
+    &--active {
+      color: $accent;
+      font-weight: 500;
+    }
+  }
+}

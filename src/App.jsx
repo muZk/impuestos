@@ -3,6 +3,7 @@ import { configurarDeclaracion } from "tax-cl";
 import Emoji from "./Emoji";
 import Loading from "./Loading";
 import HeaderBar from "./HeaderBar";
+import YearSelector from "./YearSelector";
 
 const Result = React.lazy(() => import("./Result"));
 configurarDeclaracion(getDefaultYear());
@@ -27,13 +28,15 @@ function App() {
     }
 
     if (year) {
+      configurarDeclaracion(year);
       setYear(year);
     }
   }, []);
 
-  useEffect(() => {
-    configurarDeclaracion(year);
-  }, [year]);
+  const handleYearChange = (newYear) => {
+    configurarDeclaracion(newYear);
+    setYear(newYear);
+  };
 
   const onChange = (event) => {
     const parsed = event.target.value;
@@ -56,7 +59,8 @@ function App() {
             <Emoji value="💰" />
           </h1>
           <h2>
-            Calcula cuánto tienes que pagar de impuestos el {year}{" "}
+            Calcula cuánto tienes que pagar de impuestos el{" "}
+            <YearSelector year={year} onChange={handleYearChange} />{" "}
             <Emoji value="🇨🇱" />
           </h2>
           <p>
